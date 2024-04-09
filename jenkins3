@@ -43,7 +43,7 @@ pipeline {
                 }
             }
         }
-        post {
+        post{
             always {
                 echo "Print value success or failure"
             }
