@@ -39,7 +39,7 @@ pipeline {
                 message 'Deploy?'
                 ok 'Lets Do It!'
                 parameters {
-                    string(name: TARGET_ENVIRONMENT ), DEFAULTVALUE: 'PROD', DESCRIPTION: "TARGET DEPLOY ENVIRONMENT"
+                    string(name: TARGET_ENVIRONMENT , DEFAULTVALUE: 'PROD', DESCRIPTION: "TARGET DEPLOY ENVIRONMENT")
                 }
             }
         }
