@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    environemnt {
+        RELEASE='20.04'
+    }
+    stages {
+        stage('Build') {
+            environemnt {
+                LOG_LEVEL='INFO'
+            }
+            parallevel {
+                stage('linux-arm64') {
+                    agent any
+                    steps {
+                        echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LEVEL}"
+                    }
+                }
+                stage('linux-amd64') {
+                    agent any
+                    steps {
+                        echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LEVEL}"
+                    }
+                }
+                stage('windows-amd64') {
+                    agent any
+                    steps {
+                        echo "Building release ${RELEASE}for ${STAGE_NAME} with log level ${LOG_LEVEL}"
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing the release ${RELEASE}"
+            }
+        }
+        stage('Deploy') {
+            input {
+                message 'Deploy?'
+                ok 'Lets Do It!'
+                parameters {
+                    string(name: TARGET_ENVIRONMENT ), DEFAULTVALUE: 'PROD', DESCRIPTION: "TARGET DEPLOY ENVIRONMENT"
+                }
+            }
+        }
+        post {
+            always {
+                echo "Print value success or failure"
+            }
+        }
+    }
+}
