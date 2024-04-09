@@ -14,11 +14,11 @@ pipeline {
             }
         }
         stage('Test'){
-            environemnt {
-                LOG_LEVEL='INFO'
-            }
+//            environemnt {
+//                LOG_LEVEL='INFO'
+//            }
             steps{
-                echo "Testing. I can release ${RELEASE} but not log level ${LOG_LEVEL}
+                echo "Testing. I can release ${RELEASE} but not log level ${LOG_LEVEL}"
             }
         }
     }
