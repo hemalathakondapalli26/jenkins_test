@@ -8,7 +8,7 @@ pipeline {
             environemnt {
                 LOG_LEVEL='INFO'
             }
-            parallevel {
+            parallel {
                 stage('linux-arm64') {
                     agent any
                     steps {
